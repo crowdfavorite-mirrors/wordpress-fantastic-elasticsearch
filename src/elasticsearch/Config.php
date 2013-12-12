@@ -13,7 +13,7 @@ class Config{
 
 	/**
 	* Retrieve a specific option from the wordpress database for this plugin. Note: This is cached once per request.
-	*	
+	*
 	* @param string $name The name of the option
 	*
 	* @return object
@@ -30,7 +30,7 @@ class Config{
 	* The score given to a data point that determines the impact on search results. May return null if the setttings have not been saved.
 	*
 	* @param string $type The type of wordpress object that is being scored (tax|field)
-	* @param string $name The slug and/or logical name of that type 
+	* @param string $name The slug and/or logical name of that type
 	*
 	* @return integer
 	**/
@@ -169,7 +169,7 @@ class Config{
 		return self::apply_filters('config_taxonomies', $val);
 	}
 
-  /**
+	/**
 	* A list of custom fields that are used for indexing.
 	*
 	* @return string[] meta keys custom field names
@@ -188,6 +188,35 @@ class Config{
 		}
 
 		return self::apply_filters('config_meta_fields', $val);
+	}
+
+	/**
+	* A list of different post statuses that should be indexed
+	*
+	* @return string[] post statuses
+	**/
+	static function indexable_statuses() {
+		$indexable_statuses = array(
+			'publish'
+		);
+		return self::apply_filters('indexable_statuses', $indexable_statuses);
+	}
+
+
+	/**
+	* A list of different post statuses that should not be indexed
+	*
+	* @return string[] post statuses
+	**/
+	static function nonindexable_statuses() {
+		$nonindexable_statuses = array(
+			'draft',
+			'pending',
+			'future',
+			'private',
+			'trash',
+		);
+		return self::apply_filters('nonindexable_statuses', $nonindexable_statuses);
 	}
 }
 ?>
