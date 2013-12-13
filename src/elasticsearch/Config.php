@@ -199,7 +199,7 @@ class Config{
 		$indexable_statuses = array(
 			'publish'
 		);
-		return self::apply_filters('indexable_statuses', $indexable_statuses);
+		return self::apply_filters('config_indexable_statuses', $indexable_statuses);
 	}
 
 
@@ -216,7 +216,7 @@ class Config{
 			'private',
 			'trash',
 		);
-		return self::apply_filters('nonindexable_statuses', $nonindexable_statuses);
+		return self::apply_filters('config_nonindexable_statuses', $nonindexable_statuses);
 	}
 }
 ?>
